@@ -6,25 +6,51 @@
   <title>Temperature Display</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       text-align: center;
+      background-color: #ffe6f2;
+      color: #cc0066;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    h1 {
+      color: #cc0066;
     }
 
     #temperature {
       font-size: 36px;
       margin: 20px;
+      background-color: #ffccff;
+      padding: 15px;
+      border-radius: 10px;
     }
 
     #changeTemperatureBtn {
       padding: 10px;
       font-size: 16px;
       cursor: pointer;
+      background-color: #ffccff;
+      border: none;
+      border-radius: 5px;
+      margin-top: 20px;
+      color: #cc0066;
+    }
+
+    #changeTemperatureBtn:hover {
+      background-color: #cc0066;
+      color: #ffffff;
     }
   </style>
 </head>
 <body>
 
-  <h1>Current Temperature</h1>
+  <h1>Girly Temperature Display</h1>
   <div id="temperature">27°C</div>
 
   <button id="changeTemperatureBtn" onclick="changeTemperature()">Change Temperature</button>
@@ -39,7 +65,7 @@
       document.getElementById('temperature').innerText = newTemperature + '°C';
 
       // Log a message when the button is clicked
-      console.log('Button clicke,knmd');
+      console.log('Button clicked');
     }
   </script>
 
