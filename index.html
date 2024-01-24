@@ -75,26 +75,48 @@
       }
     }
 
-    async function toggleLight() {
-      try {
-        // Make a POST request to control the light (replace with your API endpoint)
-        const response = await fetch('https://func-raspberry-temp.azurewebsites.net/api/sendMessage', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ command: 'led_off' }), // Adjust the payload as needed
-        });
+    // async function toggleLight() {
+    //   try {
+    //     // Make a POST request to control the light (replace with your API endpoint)
+    //     const response = await fetch('https://func-raspberry-temp.azurewebsites.net/api/sendMessage', {
+    //       method: 'POST',
+    //       headers: {
+    //         'Content-Type': 'application/json',
+    //       },
+    //       body: JSON.stringify({ command: 'led_off' }), // Adjust the payload as needed
+    //     });
 
-        if (response.ok) {
-          console.log('Light toggled successfully');
-        } else {
-          console.error('Error toggling light:', response.statusText);
+    //     if (response.ok) {
+    //       console.log('Light toggled successfully');
+    //     } else {
+    //       console.error('Error toggling light:', response.statusText);
+    //     }
+    //   } catch (error) {
+    //     console.error('Error toggling light:', error);
+    //   }
+    // }
+    async function toggleLight() {
+            const functionKey = 'tMhaUYDOO29rrg20GSU7Edv9gAAkU0qIZVRtX7W-on74AzFuHUWnlw==';  // Replace with your actual function key
+            const apiUrl = 'https://func-raspberry-temp.azurewebsites.net/api/sendMessage';
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-functions-key': functionKey,
+                    },
+                });
+
+                if (response.ok) {
+                    console.log('Message sent successfully');
+                } else {
+                    console.error('Failed to send message:', response.statusText);
+                }
+            } catch (error) {
+                console.error('Error sending message:', error);
+            }
         }
-      } catch (error) {
-        console.error('Error toggling light:', error);
-      }
-    }
 
     // Initial call to fetch and display temperature on page load
     updateTemperature();
