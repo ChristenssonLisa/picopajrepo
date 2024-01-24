@@ -31,6 +31,12 @@
       border-radius: 10px;
     }
 
+    #date {
+      font-size: 18px;
+      margin: 10px;
+      color: #cc0066;
+    }
+
     #changeTemperatureBtn {
       padding: 10px;
       font-size: 16px;
@@ -50,22 +56,32 @@
 </head>
 <body>
 
-  <h1>Girly Temperature Display</h1>
-  <div id="temperature">27°C</div>
+  <h1>Current Temperature</h1>
+  <div id="temperature">Loading...</div>
+  <div id="date"></div>
 
-  <button id="changeTemperatureBtn" onclick="changeTemperature()">Change Temperature</button>
+  <button id="changeTemperatureBtn" onclick="fetchTemperatureData()">Fetch Temperature</button>
 
   <script>
-    // Function to change the temperature value
-    function changeTemperature() {
-      // Hardcoded temperature value
-      var newTemperature = 27;
+    // Function to fetch temperature data from Azure Function
+    function fetchTemperatureData() {
+      // Replace with your Azure Function URL
+      var azureFunctionUrl = 'https://func-raspberry-temp.azurewebsites.net/api/getLatestTemp';
 
-      // Update the displayed temperature
-      document.getElementById('temperature').innerText = newTemperature + '°C';
+      fetch(azureFunctionUrl)
+        .then(response => response.json())
+        .then(data => {
+          // Update the displayed temperature
+          document.getElementById('temperature').innerText = data.temperature + '°C';
 
-      // Log a message when the button is clicked
-      console.log('Button clicked');
+          // Update the displayed date
+          var date = new Date(data.timestamp);
+          document.getElementById('date').innerText = 'Recorded on: ' + date.toLocaleString();
+        })
+        .catch(error => {
+          console.error('Error fetching temperature data:', error);
+          document.getElementById('temperature').innerText = 'Error fetching data';
+        });
     }
   </script>
 
