@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Temperature Display</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    #temperature {
+      font-size: 36px;
+      margin: 20px;
+    }
+
+    #changeTemperatureBtn {
+      padding: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Current Temperature</h1>
+  <div id="temperature">27°C</div>
+
+  <button id="changeTemperatureBtn" onclick="changeTemperature()">Change Temperature</button>
+
+  <script>
+    // Function to change the temperature value
+    function changeTemperature() {
+      // Hardcoded temperature value
+      var newTemperature = 27;
+
+      // Update the displayed temperature
+      document.getElementById('temperature').innerText = newTemperature + '°C';
+
+      // Log a message when the button is clicked
+      console.log('Button clicked');
+    }
+  </script>
+
+</body>
+</html>
